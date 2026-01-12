@@ -33,7 +33,6 @@ A repo to like all songs in a given playlist
 ## Usage
 Run the script:
 ```bash
-cd spotify
 python spotify/spotify.py
 ```
 
