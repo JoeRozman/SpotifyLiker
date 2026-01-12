@@ -26,7 +26,25 @@ def get_playlists(spotify):
         
     return playlists
 
-     
+
+def validate_playlist_name(playlists, playlist_name):
+    """Validate the provided playlist name.
+
+    Args:
+        playlists (_type_): _list of user's playlists_
+        playlist_name (_type_): _name of the playlist to validate_
+
+    Returns:
+        playlist: _The playlist requested_
+    """
+    while True:
+        try:
+            return get_playlist(playlists, playlist_name)
+        except ValueError as e:
+            print(e)
+            playlist_name = input("\nPlease enter a valid playlist name: ").strip()
+ 
+
 def get_all_playlist_tracks(spotify, playlist_id):
     """Retrieve all tracks from the current user's playlists.
 
@@ -140,10 +158,10 @@ def main():
         print(f"{i}. {playlist['name']}")
     
     # Request playlist name
-    name = input("\nEnter the name of the playlist to like songs from: ")
-
-    # Chose the desired playlist
-    playlist = get_playlist(playlists, name)
+    playlist_name = input("\nEnter the name of the playlist to like songs from: ").strip()
+    
+    # Validate playlist name
+    playlist = validate_playlist_name(playlists, playlist_name)
 
     # Get all tracks (single page version)
     tracks = get_all_playlist_tracks(spotify, playlist['id'])
