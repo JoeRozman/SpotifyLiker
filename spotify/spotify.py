@@ -10,7 +10,7 @@ load_dotenv()
 
 SCOPE = os.getenv("SPOTIPY_SCOPE")
 
-def get_playlists(spotify):
+def get_playlists(spotify: Spotify):
     """Retrieve and print the current user's playlists.
 
     Args:
@@ -27,7 +27,7 @@ def get_playlists(spotify):
     return playlists
 
 
-def validate_playlist_name(playlists, playlist_name):
+def validate_playlist_name(playlists: list, playlist_name: str):
     """Validate the provided playlist name.
 
     Args:
@@ -45,7 +45,7 @@ def validate_playlist_name(playlists, playlist_name):
             playlist_name = input("\nPlease enter a valid playlist name: ").strip()
  
 
-def get_all_playlist_tracks(spotify, playlist_id):
+def get_all_playlist_tracks(spotify: Spotify, playlist_id: str):
     """Retrieve all tracks from the current user's playlists.
 
     Args:
@@ -66,7 +66,7 @@ def get_all_playlist_tracks(spotify, playlist_id):
     return tracks
 
 
-def get_playlist(playlists, name):
+def get_playlist(playlists: list, name: str):
     """Retrieve a playlist by name.
 
     Args:
@@ -86,7 +86,7 @@ def get_playlist(playlists, name):
     raise ValueError(f"Playlist '{name}' not found.")
 
 
-def chunks(lst, size=50):
+def chunks(lst: list, size=50):
     """Function to yield successive n-sized chunks from lst.
 
     Args:
@@ -101,7 +101,7 @@ def chunks(lst, size=50):
         yield lst[i:i + size]
 
 
-def add_tracks_to_liked(spotify, tracks):
+def add_tracks_to_liked(spotify: Spotify, tracks: list):
     """Add tracks to the user's liked songs if they are not already liked.
 
     Args:
