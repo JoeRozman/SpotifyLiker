@@ -22,13 +22,13 @@ A repo to like all songs in a given playlist
 
 4. Create a `.env` file in the root directory and add your Spotify API credentials:
     ```env
-    SPOTIPY_CLIENT_ID=your_client_id
-    SPOTIPY_CLIENT_SECRET=your_client_secret
-    SPOTIPY_REDIRECT_URI=your_redirect_uri
+    SPOTIPY_CLIENT_ID=<your_client_id>
+    SPOTIPY_CLIENT_SECRET=<your_client_secret>
+    SPOTIPY_REDIRECT_URI=<your_redirect_uri>
     SPOTIPY_SCOPE=user-library-read user-library-modify playlist-read-private
     ```
 
-    Replace `your_client_id`, `your_client_secret`, and `your_redirect_uri` with your actual Spotify API credentials.
+    Replace `<your_client_id>`, `<your_client_secret>`, and `<your_redirect_uri>` with your actual Spotify API credentials.
 
 ## Usage
 Run the script:
@@ -37,3 +37,6 @@ python spotify/spotify.py
 ```
 
 Follow the prompts to enter the name of the playlist from which you want to like all of its songs.
+
+## Note
+On the first run, you will be prompted to authorize the application to access your Spotify account. This is required for the script to function properly.
