@@ -1,0 +1,6 @@
+# Ignore the following directories
+/.venv
+
+# Ignore the following files
+.env
+.cache
