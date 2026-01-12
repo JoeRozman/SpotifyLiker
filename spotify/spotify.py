@@ -1,6 +1,5 @@
 """Script to add tracks from a specified playlist to the user's liked songs on Spotify."""
 """Written by Joey Rozman"""
-"""Include SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, and SPOTIPY_REDIRECT_URI in your .env file"""
 
 import os
 from dotenv import load_dotenv
@@ -22,7 +21,8 @@ def get_playlists(spotify):
     
     for i, playlist in enumerate(playlists['items']):
         print(f"{i}. {playlist['name']}")
-        
+
+     
 def get_all_playlist_tracks(spotify, playlist_id):
     """Retrieve all tracks from the current user's playlists.
 
