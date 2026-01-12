@@ -5,6 +5,7 @@ A repo to like all songs in a given playlist
 1. Clone the repository:
    ```bash
    git clone <repository_url>
+   cd SpotifyLiker
     ```
 2. Create and activate a virtual environment:
     ```bash
@@ -32,7 +33,7 @@ A repo to like all songs in a given playlist
 ## Usage
 Run the script:
 ```bash
-cd SpotifyLiker
+cd spotify
 python spotify/spotify.py
 ```
 
