@@ -17,10 +17,14 @@ def get_playlists(spotify):
         spotify (_type_): _Spotify client instance_
     """
     print("Your Playlists:")
-    playlists = spotify.current_user_playlists(limit=50)
+    playlists = []
+    results = spotify.current_user_playlists(limit=50)
     
-    for i, playlist in enumerate(playlists['items']):
-        print(f"{i}. {playlist['name']}")
+    while results:
+        playlists.extend(results['items'])
+        results = spotify.next(results) if results['next'] else None
+        
+    return playlists
 
      
 def get_all_playlist_tracks(spotify, playlist_id):
@@ -44,7 +48,7 @@ def get_all_playlist_tracks(spotify, playlist_id):
     return tracks
 
 
-def get_playlist(spotify, name):
+def get_playlist(playlists, name):
     """Retrieve a playlist by name.
 
     Args:
@@ -55,9 +59,8 @@ def get_playlist(spotify, name):
         _type_: _Playlist object_
     """
     print(f"\nSearching for playlist: {name}")
-    playlists = spotify.current_user_playlists(limit=50)
     
-    for playlist in playlists['items']:
+    for playlist in playlists:
         if playlist['name'].lower() == name.lower():
             print(f"Found playlist: {playlist['name']}")
             return playlist
@@ -130,13 +133,17 @@ def main():
     )
 
     # Get current user's playlists
-    get_playlists(spotify)
+    playlists = get_playlists(spotify)
+    
+    # Print playlists
+    for i, playlist in enumerate(playlists):
+        print(f"{i}. {playlist['name']}")
     
     # Request playlist name
     name = input("\nEnter the name of the playlist to like songs from: ")
 
     # Chose the desired playlist
-    playlist = get_playlist(spotify, name)
+    playlist = get_playlist(playlists, name)
 
     # Get all tracks (single page version)
     tracks = get_all_playlist_tracks(spotify, playlist['id'])
